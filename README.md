@@ -30,7 +30,7 @@ cd instagram-automation
 ### 2. Install Dependencies
 
 ```bash
-cd instagram-automation
+npm install
 ```
 
 
