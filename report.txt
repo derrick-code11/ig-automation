@@ -1,0 +1,23 @@
+1. Challenge: Handling Instagram API Rate Limits
+
+Description: Instagram imposes strict rate limits on API requests to prevent abuse. 
+            Exceeding these limits can result in temporary bans or restricted access to the API, which is a significant challenge when sending bulk DMs.
+
+Resolution: To avoid triggering rate limits, the script processes DMs in batches and introduces delays between requests. 
+            The batch size is set to a manageable number (e.g., 10 DMs per batch) with a delay of 2 seconds between batches. 
+            Additionally, the script checks for 429 rate-limiting errors and implements retry logic to attempt the request again after a delay.
+
+
+2. Challenge: Extracting Media ID from Instagram Post URL
+
+Description: Instagram's Graph API requires a mediaId to interact with a post, but Instagram's public URLs only provide a short code (e.g., C-v2seOohTy).
+            Converting this short code to a mediaId requires special logic based on Instagram's encoding.
+
+Resolution: A function was created to convert the short code to the corresponding mediaId using a custom base64-like decoding method. 
+
+3. Challenge: Handling Large Volumes of Comments
+
+Description: Some Instagram posts can receive a large number of comments, requiring the script to handle pagination and efficiently process all comments.
+
+Resolution: The script uses Instagram’s pagination mechanism to retrieve comments in batches. 
+            It loops through all available pages of comments and adds a delay between paginated requests to avoid hitting API rate limits. This ensures that all comments are fetched, even for posts with large volumes.
